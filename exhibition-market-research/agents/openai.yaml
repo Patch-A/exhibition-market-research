@@ -1,0 +1,4 @@
+interface:
+  display_name: "展会市场调研"
+  short_description: "面向国际会展企业的企业、市场、买家与展会深度调研分析"
+  default_prompt: "请调研这家企业的产品、目标市场、潜在买家和适合参加的展会，并生成飞书云文档报告。"
