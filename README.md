@@ -1,4 +1,56 @@
-# 展会市场调研 Skill
+# Exhibition Market Research Skill
+
+Read-only market research and company analysis workflow for international exhibition businesses. It is designed for Feishu AI Agents and similar agent platforms.
+
+The Skill combines internal business data with verified web research to help marketing and sales teams answer: what to sell, where to enter, who to approach, which trade shows to evaluate, and what to validate next.
+
+## English Overview
+
+### Core capabilities
+
+- Search connected CRM, company-selection, buyer/CDP, Feishu Base, historical exhibitor, and content-center sources.
+- Identify historical customer relationships and exhibition history without exposing sensitive CRM fields.
+- Analyze product-market fit, target countries, buyers, channels, competitors, exhibitions, tariffs, HS-code candidates, and market-entry policies.
+- Generate decision-oriented reports in Feishu Cloud Documents.
+- Use a report mode appropriate to the available evidence: market-entry decision, market validation, or opportunity exploration.
+
+### Workflow
+
+```text
+Company / product / target market input
+        ↓
+Read-only internal source queries
+        ↓
+Web search and full-page verification
+        ↓
+Market comparison, buyer matching, competitor and exhibition analysis
+        ↓
+Source-linked report and 30/60/90-day action plan
+```
+
+### Evidence and source traceability
+
+Search snippets are discovery clues only. External facts must be verified by opening the source page, confirming the publisher and date, recording the evidence and retrieval date, and adding a source ID such as `[S1]` in the report. The source table must contain a clickable URL. Unavailable, conflicting, or snippet-only sources are marked `待核验` and cannot support a definitive ranking, tariff conclusion, buyer recommendation, or exhibition go/no-go decision.
+
+### Safety and integration boundaries
+
+- Business systems are read-only; only the final Feishu Cloud Document may be created.
+- No new Base or configuration table is required.
+- CRM amounts, contacts, phone numbers, emails, personal information, and unnecessary contract details are hidden by default.
+- HS codes are candidates until confirmed by the appropriate customs, importer, or compliance party.
+- The actual tool names, fields, and permission filters are adapted to the connected Feishu Agent environment.
+
+### Documentation
+
+- [Chinese detailed documentation](#中文说明)
+- [Skill instructions](exhibition-market-research/SKILL.md)
+- [Evidence and citation rules](exhibition-market-research/references/research-evidence.md)
+- [Feishu report template](exhibition-market-research/references/report-template.md)
+- [Acceptance test scenarios](exhibition-market-research/references/test-cases.md)
+
+---
+
+## 中文说明
 
 面向国际会展企业的只读市场调研与企业分析 Skill，主要运行在飞书智能体中。
 
