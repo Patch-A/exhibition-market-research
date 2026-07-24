@@ -20,18 +20,18 @@ The Skill combines internal business data with verified web research to help mar
 ```text
 Company / product / target market input
         ↓
-Read-only internal source queries
+Object-specific source routing (internal-first or web-first)
         ↓
-Web search and full-page verification
+Full-page verification with screenshots and links
         ↓
 Market comparison, buyer matching, competitor and exhibition analysis
         ↓
-Source-linked report and 30/60/90-day action plan
+Source-linked report and an evidence-based market-entry plan when needed
 ```
 
 ### Evidence and source traceability
 
-Search snippets are discovery clues only. External facts must be verified by opening the source page, confirming the publisher and date, recording the evidence and retrieval date, and adding a source ID such as `[S1]` in the report. The source table must contain a clickable URL. Unavailable, conflicting, or snippet-only sources are marked `待核验` and cannot support a definitive ranking, tariff conclusion, buyer recommendation, or exhibition go/no-go decision.
+Search snippets are discovery clues only. External facts must be verified by opening the source page, capturing the relevant content, confirming the publisher and date, recording the evidence and retrieval date, and adding a source ID such as `[S1]` in the report. The evidence card must contain a screenshot and clickable URL, followed by a business interpretation and limitation/counter-evidence. Unavailable, conflicting, snippet-only, or screenshot-missing sources are marked `待核验` and cannot support a definitive ranking, tariff conclusion, buyer recommendation, or exhibition go/no-go decision.
 
 ### Safety and integration boundaries
 
@@ -57,7 +57,7 @@ Search snippets are discovery clues only. External facts must be verified by ope
 
 面向国际会展企业的只读市场调研与企业分析 Skill，主要运行在飞书智能体中。
 
-它根据企业名称、产品和目标市场，优先查询已接入的 CRM、Selection 企业库、Selection Buyers/CDP、飞书 Base、历史展商素材库和内容中心，再联网核验企业、展会、关税与政策信息，最终生成结论先行、来源可追溯的飞书云文档报告。
+它根据企业名称、产品和目标市场，按对象选择数据源顺序：企业身份、同行和关联项目内部优先后联网核验；市场商机、政策/利好/反证、买家、渠道和准入公网优先后库内交叉验证，最终生成结论先行、带截图、链接和解读的飞书云文档报告。
 
 第一阶段以飞书智能体为主要运行环境。Skill 不要求新增 Base、配置表或底层数据库权限，只按照智能体实际暴露的入口和权限执行。
 
@@ -79,16 +79,16 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - **市场验证报告**：产品族和应用明确但 SKU 或合规信息不足时，输出验证方向和补充条件。
 - **市场机会探索简报**：只有企业名称或泛产品方向时，不伪造精确买家、HS 税率或市场排名。
 
-报告重点交付市场进入命题、同口径市场比较、买家/渠道/竞品分层、展会 go/no-go 条件以及 30/60/90 天行动计划，而不是单纯汇总内部资料。
+报告重点交付市场进入命题、同口径市场比较、买家/渠道/竞品分层、展会 go/no-go 条件以及按需生成的市场验证与进入行动计划，而不是单纯汇总内部资料。关联会展企业项目只是展会/获客节点，不是研究对象企业的方案主体。
 
 ## 工作流
 
 ```text
 输入企业名称、产品或目标市场
         ↓
-内部客户、企业、买家、展会和同行资料查询
+按对象路由查询：企业/同行/项目内部优先，市场/买家/渠道/准入公网优先
         ↓
-联网核验企业、产品、展会、关税和政策
+打开正文、保存内容截图并联网核验企业、产品、展会、关税和政策
         ↓
 市场评分、买家匹配、同行与展会分析
         ↓
@@ -101,9 +101,9 @@ Search snippets are discovery clues only. External facts must be verified by ope
 
 联网搜索结果只用于发现候选来源，不能直接把搜索摘要写成结论。对准备写入报告的外部事实，必须完成：
 
-1. 搜索候选页面。
-2. 打开网页正文，确认页面标题、发布方、日期和相关原文。
-3. 记录来源编号、可点击 URL、检索日期和关键证据摘录。
+1. 按对象选择公网优先或内部优先的查询顺序。
+2. 搜索候选页面并打开网页正文，确认页面标题、发布方、日期和相关原文。
+3. 截取支持命题的网页内容，记录来源编号、可点击 URL、检索日期和关键证据摘录。
 4. 对关税、政策、市场规模、买家采购事实、展会信息等关键命题进行独立来源交叉核验。
 5. 在正文对应事实后标注 `[S1]` 等来源编号，并在文末来源表回链到可点击链接。
 
@@ -125,7 +125,7 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - 买家、渠道、竞品和下游标杆分层；
 - 候选 HS 编码、关税、准入和政策；
 - 展会及替代获客渠道的 go/no-go 条件；
-- 30/60/90 天销售与市场行动计划；
+- 按报告类型需要生成的市场验证与进入行动计划；
 - 来源、核验状态、研究边界和待验证事项。
 
 推荐数量采用“固定上限、证据不足则减少”：最多 3 个市场、10 家买家、5 个关联会展企业项目和 10 条内容素材。每个重要来源、同行、HS 和政策事实都必须有面向销售/市场的商业解读。
@@ -175,6 +175,7 @@ Selection Buyers / CDP 入口
 - [市场评分规则](exhibition-market-research/references/market-scoring.md)
 - [报告质量门槛](exhibition-market-research/references/report-quality-gates.md)
 - [市场进入论证](exhibition-market-research/references/market-entry-analysis.md)
+- [十步调研路由与网页证据](exhibition-market-research/references/research-routing.md)
 - [买家、渠道与竞品分层](exhibition-market-research/references/buyer-and-benchmark.md)
 - [关联会展企业项目与市场选择](exhibition-market-research/references/associated-project-selection.md)
 - [HS 编码与关税规则](exhibition-market-research/references/tariff-and-hs.md)
@@ -183,4 +184,4 @@ Selection Buyers / CDP 入口
 
 ## 验证状态
 
-Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 32 个场景，包括关联项目硬过滤、当前日期筛选、来源解读、同行案例、HS 商业分析、市场机会与政策利好和敏感内部标识回归。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
+Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 42 个场景，包括对象级查询顺序、网页截图证据、关联项目硬过滤、当前日期筛选、来源解读、同行案例、HS 商业分析、市场机会与政策利好和敏感内部标识回归。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
