@@ -11,6 +11,7 @@ The Skill combines internal business data with verified web research to help mar
 - Search connected CRM, company-selection, buyer/CDP, Feishu Base, historical exhibitor, and content-center sources.
 - Identify historical customer relationships and exhibition history without exposing sensitive CRM fields.
 - Analyze product-market fit, target countries, buyers, channels, competitors, exhibitions, tariffs, HS-code candidates, and market-entry policies.
+- Restrict exhibition recommendations to current, product- and country-matched Miolante projects, with the same project ID carried through the report.
 - Generate decision-oriented reports in Feishu Cloud Documents.
 - Use a report mode appropriate to the available evidence: market-entry decision, market validation, or opportunity exploration.
 
@@ -38,6 +39,7 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - No new Base or configuration table is required.
 - CRM amounts, contacts, phone numbers, emails, personal information, and unnecessary contract details are hidden by default.
 - HS codes are candidates until confirmed by the appropriate customs, importer, or compliance party.
+- Additional market recommendations must come from current, product-matched Miolante project countries; generic public exhibition lists are not used as replacements.
 - The actual tool names, fields, and permission filters are adapted to the connected Feishu Agent environment.
 
 ### Documentation
@@ -67,7 +69,8 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - 从历史展商素材库查询同行海报、单页和历史展会素材。
 - 从内容中心按国家和产品查询已包装、已推送的运营素材。
 - 联网打开网页正文，核验企业、展会、关税、认证、准入和最新政策；正文逐条标注来源编号，来源表提供可点击链接和检索日期。
-- 推荐最多 3 个市场、10 家买家和 5 个展会，并创建飞书云文档报告。
+- 只从当前有效、产品和国家匹配的米奥兰特项目中推荐展会；指定市场之外最多从米奥兰特项目国家/地区中补充 1-2 个市场。
+- 推荐最多 3 个市场、10 家买家和 5 个米奥兰特项目，并创建飞书云文档报告。
 
 报告会先判断输入是否达到完整研究门槛：
 
@@ -124,7 +127,7 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - 30/60/90 天销售与市场行动计划；
 - 来源、核验状态、研究边界和待验证事项。
 
-推荐数量采用“固定上限、证据不足则减少”：最多 3 个市场、10 家买家、5 个展会和 10 条内容素材。
+推荐数量采用“固定上限、证据不足则减少”：最多 3 个市场、10 家买家、5 个米奥兰特项目和 10 条内容素材。每个重要来源、同行、HS 和政策事实都必须有面向销售/市场的商业解读。
 
 ## 只读与隐私规则
 
@@ -146,6 +149,7 @@ CRM 客户/合同入口
 Selection 企业库入口
 Selection Buyers / CDP 入口
 飞书 Base 展会历史入口
+米奥兰特项目/展会入口
 历史展商素材库入口
 内容中心入口
 联网搜索入口
@@ -171,10 +175,11 @@ Selection Buyers / CDP 入口
 - [报告质量门槛](exhibition-market-research/references/report-quality-gates.md)
 - [市场进入论证](exhibition-market-research/references/market-entry-analysis.md)
 - [买家、渠道与竞品分层](exhibition-market-research/references/buyer-and-benchmark.md)
+- [米奥兰特项目与市场选择](exhibition-market-research/references/miolante-project-selection.md)
 - [HS 编码与关税规则](exhibition-market-research/references/tariff-and-hs.md)
 - [报告模板](exhibition-market-research/references/report-template.md)
 - [验收测试场景](exhibition-market-research/references/test-cases.md)
 
 ## 验证状态
 
-Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 23 个场景，包括市场比较、泛行业数据、买家库噪音、同行库不可用、来源不可用、网页核验、来源回链和报告质量门槛。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
+Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 31 个场景，包括米奥兰特项目硬过滤、当前日期筛选、来源解读、同行案例、HS 商业分析、市场机会与政策利好。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
