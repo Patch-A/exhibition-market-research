@@ -15,6 +15,14 @@
 - 联网打开网页正文，核验企业、展会、关税、认证、准入和最新政策。
 - 推荐最多 3 个市场、10 家买家和 5 个展会，并创建飞书云文档报告。
 
+报告会先判断输入是否达到完整研究门槛：
+
+- **市场进入决策报告**：产品、目标市场和业务目标明确，可给出市场比较、买家开发、准入路径和行动计划。
+- **市场验证报告**：产品族和应用明确但 SKU 或合规信息不足时，输出验证方向和补充条件。
+- **市场机会探索简报**：只有企业名称或泛产品方向时，不伪造精确买家、HS 税率或市场排名。
+
+报告重点交付市场进入命题、同口径市场比较、买家/渠道/竞品分层、展会 go/no-go 条件以及 30/60/90 天行动计划，而不是单纯汇总内部资料。
+
 ## 工作流
 
 ```text
@@ -69,10 +77,13 @@ Selection Buyers / CDP 入口
 - [完整使用介绍](exhibition-market-research/README.md)
 - [数据源适配规范](exhibition-market-research/references/data-source-adaptation.md)
 - [市场评分规则](exhibition-market-research/references/market-scoring.md)
+- [报告质量门槛](exhibition-market-research/references/report-quality-gates.md)
+- [市场进入论证](exhibition-market-research/references/market-entry-analysis.md)
+- [买家、渠道与竞品分层](exhibition-market-research/references/buyer-and-benchmark.md)
 - [HS 编码与关税规则](exhibition-market-research/references/tariff-and-hs.md)
 - [报告模板](exhibition-market-research/references/report-template.md)
 - [验收测试场景](exhibition-market-research/references/test-cases.md)
 
 ## 验证状态
 
-Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [10 个验收场景](exhibition-market-research/references/test-cases.md)。
+Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 17 个场景，包括市场比较、泛行业数据、买家库噪音、同行库不可用、来源不可用和报告质量门槛。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
