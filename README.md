@@ -11,7 +11,7 @@ The Skill combines internal business data with verified web research to help mar
 - Search connected CRM, company-selection, buyer/CDP, Feishu Base, historical exhibitor, and content-center sources.
 - Identify historical customer relationships and exhibition history without exposing sensitive CRM fields.
 - Analyze product-market fit, target countries, buyers, channels, competitors, exhibitions, tariffs, HS-code candidates, and market-entry policies.
-- Restrict exhibition recommendations to current, product- and country-matched Miolante projects, with the same project ID carried through the report.
+- Restrict exhibition recommendations to current, product- and country-matched projects from the associated exhibition company, with the same project ID carried through the report.
 - Generate decision-oriented reports in Feishu Cloud Documents.
 - Use a report mode appropriate to the available evidence: market-entry decision, market validation, or opportunity exploration.
 
@@ -38,8 +38,9 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - Business systems are read-only; only the final Feishu Cloud Document may be created.
 - No new Base or configuration table is required.
 - CRM amounts, contacts, phone numbers, emails, personal information, and unnecessary contract details are hidden by default.
+- Raw internal record IDs, private CRM/Base links, bank/payment information, and invoice details are also excluded; safe display IDs or source aliases are used when cross-section consistency is needed.
 - HS codes are candidates until confirmed by the appropriate customs, importer, or compliance party.
-- Additional market recommendations must come from current, product-matched Miolante project countries; generic public exhibition lists are not used as replacements.
+- Additional market recommendations must come from current, product-matched project countries in the associated exhibition company's project pool; generic public exhibition lists are not used as replacements.
 - The actual tool names, fields, and permission filters are adapted to the connected Feishu Agent environment.
 
 ### Documentation
@@ -69,8 +70,8 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - 从历史展商素材库查询同行海报、单页和历史展会素材。
 - 从内容中心按国家和产品查询已包装、已推送的运营素材。
 - 联网打开网页正文，核验企业、展会、关税、认证、准入和最新政策；正文逐条标注来源编号，来源表提供可点击链接和检索日期。
-- 只从当前有效、产品和国家匹配的米奥兰特项目中推荐展会；指定市场之外最多从米奥兰特项目国家/地区中补充 1-2 个市场。
-- 推荐最多 3 个市场、10 家买家和 5 个米奥兰特项目，并创建飞书云文档报告。
+- 只从当前有效、产品和国家匹配的关联会展企业项目中推荐展会；指定市场之外最多从该项目池的国家/地区中补充 1-2 个市场。
+- 推荐最多 3 个市场、10 家买家和 5 个关联会展企业项目，并创建飞书云文档报告。
 
 报告会先判断输入是否达到完整研究门槛：
 
@@ -127,7 +128,7 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - 30/60/90 天销售与市场行动计划；
 - 来源、核验状态、研究边界和待验证事项。
 
-推荐数量采用“固定上限、证据不足则减少”：最多 3 个市场、10 家买家、5 个米奥兰特项目和 10 条内容素材。每个重要来源、同行、HS 和政策事实都必须有面向销售/市场的商业解读。
+推荐数量采用“固定上限、证据不足则减少”：最多 3 个市场、10 家买家、5 个关联会展企业项目和 10 条内容素材。每个重要来源、同行、HS 和政策事实都必须有面向销售/市场的商业解读。
 
 ## 只读与隐私规则
 
@@ -138,7 +139,7 @@ Search snippets are discovery clues only. External facts must be verified by ope
 - 推断的 HS 编码必须标注“待确认”，不能替代正式报关归类。
 - 内部记录与外部核验结果分开呈现，不自动覆盖原始数据。
 
-CRM 金额、联系人、手机号、邮箱、个人身份信息和不必要的合同细节默认不进入报告。Skill 只允许创建最终飞书云文档，不写回 CRM、Selection、Base、买家库、素材库或内容中心。
+CRM 金额、联系人、手机号、邮箱、个人身份信息、不必要的合同细节、原始内部 ID、私有链接、银行/付款和发票信息默认不进入报告。跨章节关联使用安全显示编号或来源别名。Skill 只允许创建最终飞书云文档，不写回 CRM、Selection、Base、买家库、素材库或内容中心。
 
 ## 飞书接入
 
@@ -149,7 +150,7 @@ CRM 客户/合同入口
 Selection 企业库入口
 Selection Buyers / CDP 入口
 飞书 Base 展会历史入口
-米奥兰特项目/展会入口
+关联会展企业项目/展会入口
 历史展商素材库入口
 内容中心入口
 联网搜索入口
@@ -175,11 +176,11 @@ Selection Buyers / CDP 入口
 - [报告质量门槛](exhibition-market-research/references/report-quality-gates.md)
 - [市场进入论证](exhibition-market-research/references/market-entry-analysis.md)
 - [买家、渠道与竞品分层](exhibition-market-research/references/buyer-and-benchmark.md)
-- [米奥兰特项目与市场选择](exhibition-market-research/references/miolante-project-selection.md)
+- [关联会展企业项目与市场选择](exhibition-market-research/references/associated-project-selection.md)
 - [HS 编码与关税规则](exhibition-market-research/references/tariff-and-hs.md)
 - [报告模板](exhibition-market-research/references/report-template.md)
 - [验收测试场景](exhibition-market-research/references/test-cases.md)
 
 ## 验证状态
 
-Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 31 个场景，包括米奥兰特项目硬过滤、当前日期筛选、来源解读、同行案例、HS 商业分析、市场机会与政策利好。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
+Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 32 个场景，包括关联项目硬过滤、当前日期筛选、来源解读、同行案例、HS 商业分析、市场机会与政策利好和敏感内部标识回归。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
