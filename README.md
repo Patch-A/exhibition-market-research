@@ -8,8 +8,8 @@ The Skill combines internal business data with verified web research to help mar
 
 ### Core capabilities
 
-- Search connected CRM, company-selection, buyer/CDP, Feishu Base, historical exhibitor, and content-center sources.
-- Identify historical customer relationships and exhibition history without exposing sensitive CRM fields.
+- Search connected customer-relationship, company/exhibitor, overseas-buyer, exhibition-history, peer-material, and operations-content sources.
+- Identify historical customer relationships and exhibition history without exposing sensitive customer-relationship fields.
 - Analyze product-market fit, target countries, buyers, channels, competitors, exhibitions, tariffs, HS-code candidates, and market-entry policies.
 - Restrict exhibition recommendations to current, product- and country-matched projects from the associated exhibition company, with the same project ID carried through the report.
 - Generate decision-oriented reports in Feishu Cloud Documents.
@@ -36,9 +36,9 @@ Search snippets are discovery clues only. External facts must be verified by ope
 ### Safety and integration boundaries
 
 - Business systems are read-only; only the final Feishu Cloud Document may be created.
-- No new Base or configuration table is required.
-- CRM amounts, contacts, phone numbers, emails, personal information, and unnecessary contract details are hidden by default.
-- Raw internal record IDs, private CRM/Base links, bank/payment information, and invoice details are also excluded; safe display IDs or source aliases are used when cross-section consistency is needed.
+- No new business or configuration table is required.
+- Customer-relationship amounts, contacts, phone numbers, emails, personal information, and unnecessary contract details are hidden by default.
+- Raw internal record IDs, private source links, bank/payment information, and invoice details are also excluded; safe display IDs or source aliases are used when cross-section consistency is needed.
 - HS codes are candidates until confirmed by the appropriate customs, importer, or compliance party.
 - Additional market recommendations must come from current, product-matched project countries in the associated exhibition company's project pool; generic public exhibition lists are not used as replacements.
 - The actual tool names, fields, and permission filters are adapted to the connected Feishu Agent environment.
@@ -57,18 +57,18 @@ Search snippets are discovery clues only. External facts must be verified by ope
 
 面向国际会展企业的只读市场调研与企业分析 Skill，主要运行在飞书智能体中。
 
-它根据企业名称、产品和目标市场，按对象选择数据源顺序：企业身份、同行和关联项目内部优先后联网核验；市场商机、政策/利好/反证、买家、渠道和准入公网优先后库内交叉验证，最终生成结论先行、带截图、链接和解读的飞书云文档报告。
+它根据企业名称、产品和目标市场，按对象选择数据源顺序：企业身份、同行和关联项目内部优先后联网核验；市场商机、政策/利好/反证、买家、渠道和准入公网优先后库内交叉验证，最终生成结论先行、带截图、链接和解读的飞书云文档报告。公开版本只保留逻辑数据源角色，不包含具体企业、租户或内部工具名称。
 
-第一阶段以飞书智能体为主要运行环境。Skill 不要求新增 Base、配置表或底层数据库权限，只按照智能体实际暴露的入口和权限执行。
+第一阶段以飞书智能体为主要运行环境。Skill 不要求新增业务表、配置表或底层数据库权限，只按照智能体实际暴露的逻辑入口和权限执行。
 
 ## 能做什么
 
-- 判断中国企业是否为历史客户，查询 CRM 中的客户、商机、合同和拜访关系。
-- 查询 Selection 企业库中的中国企业、展商、产品、行业和出口信息。
-- 从 Selection Buyers / CDP 筛选海外买家，并分析可能采购的具体产品。
-- 从飞书 Base 查询展会照片、展位、现场记录和历史同行。
-- 从历史展商素材库查询同行海报、单页和历史展会素材。
-- 从内容中心按国家和产品查询已包装、已推送的运营素材。
+- 判断中国企业是否为历史客户，查询客户关系库中的客户、商机、合同和拜访关系。
+- 查询企业/展商库中的中国企业、展商、产品、行业和出口信息。
+- 先从公网发现海外买家并核验采购/进口信号，再用海外买家库交叉验证；库内能力不可靠时暂缓正式买家推荐，并分析可能采购的具体产品。
+- 从展会历史记录库查询展会照片、展位、现场记录和历史同行。
+- 从同行/展商素材库查询同行海报、单页和历史展会素材。
+- 从运营内容中心按国家和产品查询已包装、已推送的运营素材。
 - 联网打开网页正文，核验企业、展会、关税、认证、准入和最新政策；正文逐条标注来源编号，来源表提供可点击链接和检索日期。
 - 只从当前有效、产品和国家匹配的关联会展企业项目中推荐展会；指定市场之外最多从该项目池的国家/地区中补充 1-2 个市场。
 - 推荐最多 3 个市场、10 家买家和 5 个关联会展企业项目，并创建飞书云文档报告。
@@ -92,7 +92,7 @@ Search snippets are discovery clues only. External facts must be verified by ope
         ↓
 市场评分、买家匹配、同行与展会分析
         ↓
-查询内容中心补充素材
+查询运营内容中心补充素材
         ↓
 创建飞书云文档报告
 ```
@@ -132,34 +132,34 @@ Search snippets are discovery clues only. External facts must be verified by ope
 
 ## 只读与隐私规则
 
-- CRM、Selection、Base、买家库和素材库只读。
+- 客户关系库、企业/展商库、海外买家库、展会历史记录库和素材库只读。
 - 只创建最终飞书云文档，不修改业务数据。
-- 默认隐藏 CRM 金额、联系人、联系方式、个人身份信息和不必要的合同细节。
+- 默认隐藏客户关系库金额、联系人、联系方式、个人身份信息和不必要的合同细节。
 - 水单、付款凭证等财务资料不属于本 Skill 的研究范围。
 - 推断的 HS 编码必须标注“待确认”，不能替代正式报关归类。
 - 内部记录与外部核验结果分开呈现，不自动覆盖原始数据。
 
-CRM 金额、联系人、手机号、邮箱、个人身份信息、不必要的合同细节、原始内部 ID、私有链接、银行/付款和发票信息默认不进入报告。跨章节关联使用安全显示编号或来源别名。Skill 只允许创建最终飞书云文档，不写回 CRM、Selection、Base、买家库、素材库或内容中心。
+客户关系库金额、联系人、手机号、邮箱、个人身份信息、不必要的合同细节、原始内部 ID、私有链接、银行/付款和发票信息默认不进入报告。跨章节关联使用安全显示编号或来源别名。Skill 只允许创建最终飞书云文档，不写回任何业务库、素材库或运营内容中心。
 
 ## 飞书接入
 
 首次使用时，将以下逻辑数据源映射到飞书智能体中已经接入的工具入口：
 
 ```text
-CRM 客户/合同入口
-Selection 企业库入口
-Selection Buyers / CDP 入口
-飞书 Base 展会历史入口
-关联会展企业项目/展会入口
-历史展商素材库入口
-内容中心入口
-联网搜索入口
+客户关系库查询入口
+企业/展商库查询入口
+海外买家库查询入口
+展会历史记录库查询入口
+关联会展企业项目池查询入口
+同行/展商素材库查询入口
+运营内容中心查询入口
+联网研究入口
 飞书云文档创建入口
 ```
 
-不要求新增 Base 或配置表，也不要求拥有底层数据库完整后台权限。Skill 按飞书智能体实际暴露的入口和权限执行。
+不要求新增业务表或配置表，也不要求拥有底层数据库完整后台权限。Skill 按飞书智能体实际暴露的入口和权限执行。
 
-首次接入或工具入口变化时，需要先确认每个入口的查询对象、参数、返回字段和权限过滤，并将适配结果保存在 Skill 或飞书智能体配置中，不新增业务表。
+首次接入或工具入口变化时，需要先确认每个逻辑入口的查询对象、参数、返回字段和权限过滤，并将适配结果保存在飞书智能体私有配置中，不写入公开仓库或新增业务表。
 
 ## 输入示例
 
@@ -184,4 +184,4 @@ Selection Buyers / CDP 入口
 
 ## 验证状态
 
-Skill 结构校验、数据源路由、只读规则、敏感字段脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 42 个场景，包括对象级查询顺序、网页截图证据、关联项目硬过滤、当前日期筛选、来源解读、同行案例、HS 商业分析、市场机会与政策利好和敏感内部标识回归。真实 CRM、Selection、Base、联网搜索和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
+Skill 结构校验、数据源路由、只读规则、公开内容脱敏、HS 编码待确认规则和文档链接检查已通过。当前验收清单已覆盖 46 个场景，包括对象级查询顺序、买家库能力预检、网页截图证据、关联项目硬过滤、当前日期筛选、来源解读、同行案例、HS 商业分析、市场机会与政策利好和公开内容脱敏。真实业务入口、联网研究和飞书云文档的端到端测试，需要在飞书智能体中使用脱敏测试企业执行 [验收场景](exhibition-market-research/references/test-cases.md)。
